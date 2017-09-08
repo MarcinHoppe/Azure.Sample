@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace DotNetAppSqlDb
+namespace Azure.Sample
 {
     public class BundleConfig
     {

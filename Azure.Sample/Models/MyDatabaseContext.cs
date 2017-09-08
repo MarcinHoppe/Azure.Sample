@@ -4,7 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
-namespace DotNetAppSqlDb.Models
+namespace Azure.Sample.Models
 {
     public class MyDatabaseContext : DbContext
     {
@@ -19,6 +19,6 @@ namespace DotNetAppSqlDb.Models
         {
         }
 
-        public System.Data.Entity.DbSet<DotNetAppSqlDb.Models.Todo> Todoes { get; set; }
+        public System.Data.Entity.DbSet<Azure.Sample.Models.Todo> Todoes { get; set; }
     }
 }

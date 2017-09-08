@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace DotNetAppSqlDb.Models
+namespace Azure.Sample.Models
 {
     public class Todo
     {

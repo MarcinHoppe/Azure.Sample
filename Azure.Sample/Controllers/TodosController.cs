@@ -6,9 +6,9 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using DotNetAppSqlDb.Models;using System.Diagnostics;
+using Azure.Sample.Models;using System.Diagnostics;
 
-namespace DotNetAppSqlDb.Controllers
+namespace Azure.Sample.Controllers
 {
     public class TodosController : Controller
     {
