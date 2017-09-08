@@ -1,22 +1,20 @@
 using System;
-using System.Collections.Generic;
-using System.Data;
 using System.Data.Entity;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using Azure.Sample.Models;using System.Diagnostics;
+using Azure.Sample.Models;
 
 namespace Azure.Sample.Controllers
 {
     public class TodosController : Controller
     {
-        private MyDatabaseContext db = new MyDatabaseContext();
+        private readonly MyDatabaseContext db = new MyDatabaseContext();
 
         // GET: Todos
         public ActionResult Index()
-        {            
+        {
             Trace.WriteLine("GET /Todos/Index");
             return View(db.Todoes.ToList());
         }
@@ -26,14 +24,10 @@ namespace Azure.Sample.Controllers
         {
             Trace.WriteLine("GET /Todos/Details/" + id);
             if (id == null)
-            {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Todo todo = db.Todoes.Find(id);
+            var todo = db.Todoes.Find(id);
             if (todo == null)
-            {
                 return HttpNotFound();
-            }
             return View(todo);
         }
 
@@ -41,7 +35,7 @@ namespace Azure.Sample.Controllers
         public ActionResult Create()
         {
             Trace.WriteLine("GET /Todos/Create");
-            return View(new Todo { CreatedDate = DateTime.Now });
+            return View(new Todo {CreatedDate = DateTime.Now});
         }
 
         // POST: Todos/Create
@@ -67,14 +61,10 @@ namespace Azure.Sample.Controllers
         {
             Trace.WriteLine("GET /Todos/Edit/" + id);
             if (id == null)
-            {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Todo todo = db.Todoes.Find(id);
+            var todo = db.Todoes.Find(id);
             if (todo == null)
-            {
                 return HttpNotFound();
-            }
             return View(todo);
         }
 
@@ -100,24 +90,21 @@ namespace Azure.Sample.Controllers
         {
             Trace.WriteLine("GET /Todos/Delete/" + id);
             if (id == null)
-            {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Todo todo = db.Todoes.Find(id);
+            var todo = db.Todoes.Find(id);
             if (todo == null)
-            {
                 return HttpNotFound();
-            }
             return View(todo);
         }
 
         // POST: Todos/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
+        [ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
             Trace.WriteLine("POST /Todos/Delete/" + id);
-            Todo todo = db.Todoes.Find(id);
+            var todo = db.Todoes.Find(id);
             db.Todoes.Remove(todo);
             db.SaveChanges();
             return RedirectToAction("Index");
@@ -126,9 +113,7 @@ namespace Azure.Sample.Controllers
         protected override void Dispose(bool disposing)
         {
             if (disposing)
-            {
                 db.Dispose();
-            }
             base.Dispose(disposing);
         }
     }

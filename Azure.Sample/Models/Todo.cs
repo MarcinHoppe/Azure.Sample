@@ -12,6 +12,7 @@ namespace Azure.Sample.Models
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime CreatedDate { get; set; }
+
         public bool Done { get; set; }
     }
 }
