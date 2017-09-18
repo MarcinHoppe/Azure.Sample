@@ -3,6 +3,7 @@ using System.Data.Entity;
 using System.Diagnostics;
 using System.Linq;
 using System.Net;
+using System.Web;
 using System.Web.Mvc;
 using Azure.Sample.Models;
 
@@ -107,6 +108,34 @@ namespace Azure.Sample.Controllers
             var todo = db.Todoes.Find(id);
             db.Todoes.Remove(todo);
             db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        // GET Todos/Attachment/5
+        [HttpGet]
+        public ActionResult Attachment(int? id)
+        {
+            Trace.WriteLine("GET /Todos/Attachment/" + id);
+            if (id == null)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            // TODO: Show attachment in the view.
+
+            return View();
+        }
+
+        // POST Todos/Attachment/5
+        [HttpPost]
+        [ActionName("Attachment")]
+        [ValidateAntiForgeryToken]
+        public ActionResult UploadAttachment(int id, HttpPostedFileBase attachment)
+        {
+            Trace.WriteLine("POST /Todos/Attachment/" + id);
+            if (attachment == null || attachment.ContentLength == 0)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            // TODO: Store attachment in blob storage.
+
             return RedirectToAction("Index");
         }
 
