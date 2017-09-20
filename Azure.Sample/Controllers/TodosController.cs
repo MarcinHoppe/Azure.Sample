@@ -118,9 +118,6 @@ namespace Azure.Sample.Controllers
             Trace.WriteLine("GET /Todos/Attachment/" + id);
             if (id == null)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-
-            // TODO: Show attachment in the view.
-
             return View();
         }
 
@@ -133,9 +130,6 @@ namespace Azure.Sample.Controllers
             Trace.WriteLine("POST /Todos/Attachment/" + id);
             if (attachment == null || attachment.ContentLength == 0)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-
-            // TODO: Store attachment in blob storage.
-
             return RedirectToAction("Index");
         }
 
